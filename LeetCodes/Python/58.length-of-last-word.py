@@ -7,6 +7,9 @@
 # @lc code=start
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
+        word_list = s.split()
+        target_word = word_list.pop()
+        return len(target_word)
         
 # @lc code=end
 

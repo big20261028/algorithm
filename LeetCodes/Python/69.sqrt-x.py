@@ -8,6 +8,7 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
         print("test")
+        print('second test')
         
 # @lc code=end
 

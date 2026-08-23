@@ -13,6 +13,6 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        
+        print('test')
 # @lc code=end
 

@@ -13,6 +13,24 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        print('test')
+        if not root:
+            return 0
+
+        return self.findMaxDepth(root.left, root.right)
+
+    def findMaxDepth(self, a_node, b_node, depth=1):
+        if not a_node and not b_node:
+            return depth
+
+        if not a_node:
+            return self.findMaxDepth(b_node.left, b_node.right, depth+1)
+        elif not b_node:
+            return self.findMaxDepth(a_node.left, a_node.right, depth+1)
+        else:
+            return max(self.findMaxDepth(a_node.left, a_node.right, depth+1), 
+                       self.findMaxDepth(b_node.left, b_node.right, depth+1))
+        
+
+    
 # @lc code=end
 

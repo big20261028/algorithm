@@ -31,28 +31,34 @@ class Solution:
             current_y = min(height[end_pointer], height[start_pointer])
             current_space = current_x * current_y
 
-            if current_space > max_store:
-                max_store = current_space
+            # if current_space > max_store:
+            max_store = max(max_store, current_space)
 
-                for next_idx in range(start_pointer + 1, end_pointer):
-                    next_x = end_pointer - next_idx
-                    next_y = min(height[end_pointer], height[next_idx])
-                    next_space = next_x * next_y
+            if height[start_pointer] >= height[end_pointer]:
+                end_pointer -= 1
+            else:
+                start_pointer += 1
 
-                    if next_space > max_store:
-                        max_store = next_space
-                        current_x = next_x
-                        current_y = next_y
-                        start_pointer = next_idx
-                    elif next_space == max_store and ((next_x - current_x) < (next_y - current_y)):
-                        current_x = next_x
-                        current_y = next_y
-                        start_pointer = next_idx
+            # for next_idx in range(start_pointer + 1, end_pointer):
+            #     next_x = end_pointer - next_idx
+            #     next_y = min(height[end_pointer], height[next_idx])
+            #     next_space = next_x * next_y
 
+            #     if next_space > max_store:
+            #         print(next_space, next_idx, end_pointer)
+            #         max_store = next_space
+            #         current_x = next_x
+            #         current_y = next_y
+            #         start_pointer = next_idx
+            #     elif next_space == max_store and ((next_x - current_x) < (next_y - current_y)):
+            #         current_x = next_x
+            #         current_y = next_y
+            #         start_pointer = next_idx
+            #     else:
+            #         pass
+            # end_pointer -= 1
 
-
-            
-
+        return max_store
 
         
 # @lc code=end

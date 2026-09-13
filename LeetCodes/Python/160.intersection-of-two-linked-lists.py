@@ -14,6 +14,7 @@
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
         print("Test")
+        return None
         
 # @lc code=end
 

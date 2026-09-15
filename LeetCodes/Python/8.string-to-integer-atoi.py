@@ -16,7 +16,7 @@ class Solution:
 
         '''
         # 공백을 모두 제거함
-        s = s.replace(" ","")
+        # s = s.replace(" ","")
         result = None
 
         is_minus = None
@@ -30,21 +30,31 @@ class Solution:
         리스트가 차있고 char_number_list[0] 가 0이면 덮어쓰기
 
         '''
+        # print(s)
         for char in s:
 
 
-            if not char_number_list and is_minus is None:
-                if char == "-":
-                    is_minus = True
-                elif char == "+":
-                    is_minus = False
+            if not char_number_list and is_minus is None and char == "-":
+                is_minus = True
+            elif not char_number_list and is_minus is None and char == "+":
+                is_minus = False
+            elif is_minus is not None and not char.isdecimal():
+                break
+            elif char == " ":
+                print(char)
+                if char_number_list:
+                    break
+                else:
+                    continue
 
-            if not char.isdecimal():
+            elif not char.isdecimal():
+                print(char)
                 break
             else:
                 if char_number_list and char_number_list[0] == '0':
                     char_number_list[0] = char
                 else:
+                    print(char)
                     char_number_list.append(char)
 
 

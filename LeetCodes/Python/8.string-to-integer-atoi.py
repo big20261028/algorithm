@@ -8,46 +8,63 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
 
-        flag = True
-        result = list()
+        '''
+        1. 공백은 무시
+        2. + or - 나오면 반영. 단, 숫자가 나오지 않은 상태일때만,
+        3. 숫자가 없으면 0 반환
+        4. -2의 31제곱보다 작으면 -2의 31제곱 값을 쓰고 2의 31제곱-1 보다 크면 2의 31제곱-1 값 반환
 
-        is_positive = True
-        limit_range = 2 ** 31
+        '''
+        # 공백을 모두 제거함
+        s = s.replace(" ","")
+        result = None
 
+        is_minus = None
+        max_val = (2 ** 31) - 1
+        min_val = (-2) ** 31
+
+        char_number_list = list()
+
+        '''
+        char가 숫자이면 append
+        리스트가 차있고 char_number_list[0] 가 0이면 덮어쓰기
+
+        '''
         for char in s:
 
-            if char == ' ' and flag:
-                continue
 
-            if char == '-' and flag:
-                is_positive = False
-            elif char == '+' and flag:
-                pass
-            
-            elif not result and char == '0':
-                pass
+            if not char_number_list and is_minus is None:
+                if char == "-":
+                    is_minus = True
+                elif char == "+":
+                    is_minus = False
 
-            elif char.isdigit():
-                result.append(char)
-            else:
+            if not char.isdecimal():
                 break
+            else:
+                if char_number_list and char_number_list[0] == '0':
+                    char_number_list[0] = char
+                else:
+                    char_number_list.append(char)
 
-            flag = False
 
-        if not result:
+
+        if char_number_list:
+            result = int("".join(char_number_list))
+            if is_minus:
+                result *= -1
+
+        if result:
+            if result > max_val:
+                return max_val
+            elif result < min_val:
+                return min_val
+            else:
+                return result
+        else:
             return 0
 
-        if is_positive:
-            result = int("".join(result))
-        else:
-            result = int("".join(result)) * -1
 
-        if result >= limit_range:
-            result = limit_range - 1
-        elif result < (limit_range * -1):
-            result = (limit_range * -1)
-
-        return result
 
         
 # @lc code=end

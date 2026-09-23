@@ -7,6 +7,10 @@
 # @lc code=start
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        print(list())
+        cnt = 0
+        while n > 0:
+            cnt += n & 1
+            n >>= 1
+        return cnt
 # @lc code=end
 

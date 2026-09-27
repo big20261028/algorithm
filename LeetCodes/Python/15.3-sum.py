@@ -7,6 +7,6 @@
 # @lc code=start
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        
+        print('test')
 # @lc code=end
 
